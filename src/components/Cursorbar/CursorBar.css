@@ -1,0 +1,15 @@
+.cursor-bar {
+  position: fixed;
+
+  top: 0;
+
+  height: 100vh;
+
+  background: #243cff;
+
+  pointer-events: none;
+
+  z-index: 2;
+
+  will-change: left, width;
+}
