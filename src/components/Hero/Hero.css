@@ -1,14 +1,52 @@
 .hero {
   position: relative;
-
   width: 100%;
   min-height: 100vh;
-
   overflow: hidden;
-
   background: #f2f1ec;
-
   color: #111;
+}
+
+/* =====================================================
+   LAYERS & MASKING
+===================================================== */
+
+.hero-layer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hero-layer--base {
+  z-index: 3; /* Above CursorBar (z-index: 2) */
+}
+
+.hero-mask-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4; /* Above base layer */
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+/* Force all elements inside the masked layer to turn white */
+.hero-layer--white,
+.hero-layer--white .hero-menu-icon,
+.hero-layer--white .hero-eyebrow,
+.hero-layer--white .hero-eyebrow span:first-child,
+.hero-layer--white .hero-description,
+.hero-layer--white .hero-meta,
+.hero-layer--white .hero-contact span:first-child,
+.hero-layer--white .hero-contact span:last-child {
+  color: #ffffff;
+}
+
+.hero-layer--white .hero-meta-dot {
+  background: #ffffff;
+}
+
+.hero-layer--white .hero-header {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
 }
 
 /* =====================================================
@@ -17,52 +55,31 @@
 
 .hero-header {
   position: relative;
-
-  z-index: 10;
-
   width: 100%;
   height: 60px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   padding: 0 20px;
-
   border-bottom: 1px solid rgba(17, 17, 17, 0.12);
 }
 
-/* Logo */
-
 .hero-logo {
   font-size: 10px;
-
   font-weight: 700;
-
   letter-spacing: -0.03em;
 }
 
-/* Menu */
-
 .hero-menu {
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
   font-size: 10px;
 }
 
-/* Blue dots */
-
 .hero-menu-icon {
   color: #243cff;
-
   font-size: 12px;
-
   letter-spacing: -3px;
 }
 
@@ -71,10 +88,6 @@
 ===================================================== */
 
 .hero-content {
-  position: relative;
-
-  z-index: 5;
-
   padding: 18px 20px 0;
 }
 
@@ -84,21 +97,13 @@
 
 .hero-eyebrow {
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   margin-bottom: 12px;
-
   font-size: 8px;
-
   line-height: 1;
-
   letter-spacing: 0.08em;
-
   text-transform: uppercase;
-
   color: #686868;
 }
 
@@ -107,128 +112,23 @@
 }
 
 /* =====================================================
-   HEADING WRAPPER
+   HEADING
 ===================================================== */
 
 .hero-heading-wrapper {
   position: relative;
-
   width: 100%;
-
-  /*
-    Both text layers use this same
-    coordinate system.
-  */
   max-width: 1000px;
 }
 
-/* =====================================================
-   HEADING
-===================================================== */
-
 .hero-heading {
   margin: 0;
-
-  /*
-    FIXED WIDTH
-
-    This is important.
-
-    Both black and white copies must have
-    exactly the same width otherwise their
-    text can wrap differently.
-  */
-
   width: 1000px;
-
   max-width: none;
-
   font-size: clamp(64px, 7.3vw, 108px);
-
   line-height: 0.88;
-
   font-weight: 800;
-
   letter-spacing: -0.065em;
-
-  /*
-    We control the line breaks manually
-    using <br />, so the browser must not
-    rebalance the text.
-  */
-
-  text-wrap: nowrap;
-}
-
-/* =====================================================
-   BLACK HEADING
-===================================================== */
-
-.hero-heading-black {
-  position: relative;
-
-  color: #111;
-
-  z-index: 1;
-}
-
-/* =====================================================
-   WHITE HEADING MASK
-===================================================== */
-
-.hero-heading-mask {
-  position: absolute;
-
-  top: 0;
-
-  bottom: 0;
-
-  /*
-    ONLY the part of the white heading
-    inside this box is visible.
-  */
-
-  overflow: hidden;
-
-  pointer-events: none;
-
-  z-index: 2;
-}
-
-/* =====================================================
-   WHITE HEADING
-===================================================== */
-
-.hero-heading-white {
-  position: absolute;
-
-  top: 0;
-
-  /*
-    Hero.jsx dynamically changes this value.
-
-    Example:
-
-    maskLeft = 300px
-
-    white heading left = -300px
-
-    Therefore the white text remains
-    perfectly aligned with the black text.
-  */
-
-  width: 1000px;
-
-  max-width: none;
-
-  color: #fff;
-
-  /*
-    Prevent any automatic wrapping.
-  */
-
-  white-space: nowrap;
-
   text-wrap: nowrap;
 }
 
@@ -238,11 +138,8 @@
 
 .hero-description {
   margin-top: 24px;
-
   font-size: 9px;
-
   line-height: 1.35;
-
   color: #777;
 }
 
@@ -252,31 +149,20 @@
 
 .hero-meta {
   position: absolute;
-
   left: 20px;
-
   bottom: 22px;
-
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
   font-size: 7px;
-
   letter-spacing: 0.08em;
-
   color: #777;
 }
 
 .hero-meta-dot {
   width: 4px;
-
   height: 4px;
-
   background: #243cff;
-
   flex-shrink: 0;
 }
 
@@ -286,19 +172,11 @@
 
 .hero-contact {
   position: absolute;
-
   right: 20px;
-
   bottom: 22px;
-
-  z-index: 10;
-
   display: flex;
-
   flex-direction: column;
-
   font-size: 12px;
-
   line-height: 0.9;
 }
 
@@ -318,7 +196,6 @@
 @media (max-width: 768px) {
   .hero-header {
     height: 52px;
-
     padding: 0 16px;
   }
 
@@ -331,20 +208,9 @@
   }
 
   .hero-heading {
-    /*
-      Keep the same fixed coordinate system
-      on mobile too.
-    */
-
     width: 700px;
-
     font-size: clamp(48px, 12vw, 80px);
-
     line-height: 0.9;
-  }
-
-  .hero-heading-white {
-    width: 700px;
   }
 
   .hero-description {
@@ -353,13 +219,11 @@
 
   .hero-meta {
     left: 16px;
-
     bottom: 18px;
   }
 
   .hero-contact {
     right: 16px;
-
     bottom: 18px;
   }
 }
