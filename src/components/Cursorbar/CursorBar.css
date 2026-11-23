@@ -1,15 +1,14 @@
 .cursor-bar {
   position: fixed;
-
   top: 0;
-
   height: 100vh;
-
   background: #243cff;
-
   pointer-events: none;
-
   z-index: 2;
+  will-change: left, width, top, height;
+}
 
-  will-change: left, width;
+.cursor-bar--mobile.cursor-bar--filled {
+  transition: top 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }

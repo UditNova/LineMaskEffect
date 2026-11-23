@@ -190,40 +190,134 @@
 }
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET & MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
-  .hero-header {
-    height: 52px;
-    padding: 0 16px;
+@media (max-width: 1024px) {
+  .hero,
+  .hero-layer {
+    min-height: 100dvh;
+  }
+
+  .hero-layer {
+    display: flex;
+    flex-direction: column;
   }
 
   .hero-content {
-    padding: 16px;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 28px 24px 104px;
+  }
+
+  .hero-eyebrow {
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
   }
 
   .hero-heading-wrapper {
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
 
   .hero-heading {
-    width: 700px;
-    font-size: clamp(48px, 12vw, 80px);
-    line-height: 0.9;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    font-size: clamp(48px, min(9.5vw, 7.6dvh), 88px);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    white-space: normal;
+    text-wrap: normal;
+    overflow-wrap: break-word;
   }
 
   .hero-description {
+    max-width: 48ch;
+    margin-top: 26px;
+    font-size: clamp(13px, min(2.4vw, 2dvh), 16px);
+    line-height: 1.5;
+  }
+
+  .hero-meta {
+    left: 24px;
+    bottom: 26px;
+    font-size: 9px;
+    gap: 8px;
+  }
+
+  .hero-contact {
+    right: 24px;
+    bottom: 24px;
+    font-size: clamp(18px, min(3.2vw, 2.6dvh), 24px);
+    line-height: 0.95;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-br {
+    display: none;
+  }
+
+  .hero-header {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .hero-logo,
+  .hero-menu {
+    font-size: 12px;
+  }
+
+  .hero-content {
+    padding: 20px 16px 96px;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 16px;
+    font-size: 9.5px;
+  }
+
+  .hero-heading {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    font-size: clamp(38px, min(11.5vw, 6.6dvh), 62px);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    white-space: normal;
+    text-wrap: normal;
+    overflow-wrap: break-word;
+  }
+
+  .hero-description {
+    max-width: 100%;
     margin-top: 20px;
+    font-size: clamp(12.5px, min(3.8vw, 2dvh), 15px);
+    line-height: 1.5;
+  }
+
+  .hero-description br {
+    display: none;
   }
 
   .hero-meta {
     left: 16px;
-    bottom: 18px;
+    bottom: 22px;
+    font-size: 8.5px;
   }
 
   .hero-contact {
     right: 16px;
-    bottom: 18px;
+    bottom: 22px;
+    font-size: clamp(16px, min(4.8vw, 2.4dvh), 21px);
+    line-height: 0.95;
   }
 }

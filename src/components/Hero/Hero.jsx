@@ -1,6 +1,11 @@
 import "./Hero.css";
 
-const Hero = ({ barX = 154, barWidth = 38 }) => {
+const Hero = ({
+  barX = 154,
+  barWidth = 38,
+  barTop = 0,
+  barHeight = typeof window !== "undefined" ? window.innerHeight : 900,
+}) => {
   const renderHeroInner = (isWhiteLayer = false) => (
     <div
       className={`hero-layer ${
@@ -27,12 +32,9 @@ const Hero = ({ barX = 154, barWidth = 38 }) => {
 
         <div className="hero-heading-wrapper">
           <h1 className="hero-heading">
-            Digital products,
-            <br />
-            interfaces and systems—
-            <br />
-            shaped from first idea
-            <br />
+            Digital products, <br className="desktop-br" />
+            interfaces and systems— <br className="desktop-br" />
+            shaped from first idea <br className="desktop-br" />
             to working form.
           </h1>
         </div>
@@ -60,8 +62,13 @@ const Hero = ({ barX = 154, barWidth = 38 }) => {
     </div>
   );
 
-  // Calculate right edge for clip-path: inset(top right bottom left)
+  // Calculate inset edges for clip-path: inset(top right bottom left)
+  const topInset = `${Math.max(0, barTop)}px`;
   const rightInset = `calc(100% - ${barX + barWidth}px)`;
+  const bottomInset = `calc(100% - ${Math.max(0, barTop + barHeight)}px)`;
+  const leftInset = `${Math.max(0, barX)}px`;
+
+  const clipValue = `inset(${topInset} ${rightInset} ${bottomInset} ${leftInset})`;
 
   return (
     <section className="hero">
@@ -72,8 +79,8 @@ const Hero = ({ barX = 154, barWidth = 38 }) => {
       <div
         className="hero-mask-overlay"
         style={{
-          clipPath: `inset(0px ${rightInset} 0px ${barX}px)`,
-          WebkitClipPath: `inset(0px ${rightInset} 0px ${barX}px)`,
+          clipPath: clipValue,
+          WebkitClipPath: clipValue,
         }}
       >
         {renderHeroInner(true)}

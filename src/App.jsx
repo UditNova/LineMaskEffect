@@ -10,6 +10,8 @@ function App() {
   const [bar, setBar] = useState({
     left: window.innerWidth / 2 - 19,
     width: 38,
+    top: 0,
+    height: window.innerHeight,
   });
 
   return (
@@ -18,7 +20,12 @@ function App() {
       <CursorBar onPositionChange={setBar} />
 
       {/* Hero */}
-      <Hero barX={bar.left} barWidth={bar.width} />
+      <Hero
+        barX={bar.left}
+        barWidth={bar.width}
+        barTop={bar.top}
+        barHeight={bar.height}
+      />
 
       {/* About */}
       <About />
